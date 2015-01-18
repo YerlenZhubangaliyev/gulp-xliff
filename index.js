@@ -25,12 +25,12 @@ function handleOutput(output, file, cb) {
 }
 
 module.exports = function () {
-    function xliffToJson (file, encoding, cb) {
+    function xliff2Json (file, encoding, cb) {
         parseXliff(String(file.contents), function (xliffJson) {
             handleOutput(JSON.stringify(xliffJson, null, 4), file, cb);
         });
 
     }
 
-    return through.obj(xliffToJson);
+    return through.obj(xliff2Json);
 };
