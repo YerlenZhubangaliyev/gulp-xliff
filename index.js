@@ -52,7 +52,6 @@ module.exports = function () {
         parseXliff(String(file.contents), function (xliffJson) {
             handleOutput(xliffJson, file, cb);
         });
-
     }
 
     return through.obj(xliff2Json);
