@@ -39,8 +39,8 @@ function findAllTransUnits (jsonObject) {
 module.exports = function () {
     function xliff2Json (file, encoding, cb) {
         parseXliff(String(file.contents), function (xliffJson) {
-            var json = findAllTransUnits(JSON.stringify(xliffJson, null, 4));
-            handleOutput(json, file, cb);
+            var json = findAllTransUnits(xliffJson);
+            handleOutput(JSON.stringify(json, null, 4), file, cb);
         });
 
     }
