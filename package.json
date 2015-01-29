@@ -1,31 +1,32 @@
 {
-    "name": "gulp-xliff2json",
-    "version": "0.0.1",
-    "description": "Converts Xliff to json",
-    "license": "MIT",
-    "repository": {
+    "name":            "gulp-xliff2json",
+    "version":         "0.0.2",
+    "description":     "Converts Xliff to Json",
+    "license":         "MIT",
+    "repository":      {
         "type": "git",
-        "url": "https://github.com/YerlenZhubangaliyev/gulp-xliff"
+        "url":  "https://github.com/YerlenZhubangaliyev/gulp-xliff"
     },
-    "author": {
-        "name": "Yerlen Zhubangaliyev",
+    "author":          {
+        "name":  "Yerlen Zhubangaliyev",
         "email": "yerlen@yerlen.com",
-        "url": "http://yerlen.com"
+        "url":   "http://yerlen.com"
     },
-    "engines": {
+    "engines":         {
         "node": ">=0.10.0"
     },
-    "files": [
+    "files":           [
         "index.js"
     ],
-    "keywords": [
+    "keywords":        [
         "gulpplugin",
         "xliff"
     ],
-    "dependencies": {
+    "dependencies":    {
         "gulp-util": "^3.0.0",
-        "through2": "^0.6.1",
-        "xml2js": "*"
+        "through2":  "^0.6.1",
+        "xml2js":    "*",
+        "JSONPath":  "*"
     },
     "devDependencies": {
         "gulp": "^3.0.0"

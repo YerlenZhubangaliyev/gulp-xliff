@@ -1,13 +1,21 @@
+'use strict';
+
+/**
+ *
+ * @type {exports}
+ */
 
 var
-    through     = require('through2'),
-    fs          = require('fs'),
-    xml2js      = require('xml2js'),
-    gutil       = require('gulp-util'),
-    ext         = gutil.replaceExtension,
-    PluginError = gutil.PluginError,
-    xmlParser   = new xml2js.Parser(),
-    pluginName  = "gulp-xliff2json";
+through       = require('through2'),
+fs            = require('fs'),
+xml2js        = require('xml2js'),
+jsonpath      = require('JSONPath'),
+gutil         = require('gulp-util'),
+ext           = gutil.replaceExtension,
+PluginError   = gutil.PluginError,
+xmlParser     = new xml2js.Parser(),
+transUnitPath = "$..trans-unit",
+pluginName    = "gulp-xliff2json";
 
 
 function parseXliff (xliff, cb) {
@@ -18,16 +26,21 @@ function parseXliff (xliff, cb) {
     });
 };
 
-function handleOutput(output, file, cb) {
+function handleOutput (output, file, cb) {
     file.path = ext(file.path, '.json');
     file.contents = new Buffer(output);
     cb(null, file);
 }
 
+function findAllTransUnits (jsonObject) {
+    jsonpath.eval(jsonObject, transUnitPath);
+}
+
 module.exports = function () {
     function xliff2Json (file, encoding, cb) {
         parseXliff(String(file.contents), function (xliffJson) {
-            handleOutput(JSON.stringify(xliffJson, null, 4), file, cb);
+            var json = findAllTransUnits(JSON.stringify(xliffJson, null, 4));
+            handleOutput(json, file, cb);
         });
 
     }
